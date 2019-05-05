@@ -1,0 +1,18 @@
+-Umgebungsvariablen sind nur in der momentanen Shell verfügbar (lokal) während Shell Variablen Systemweit zur Verfügung sind.
+
+-$HOME = Homeverzeichnis, $PATH = Wenn ein Befehl ausgeführt wird, sucht das System durch Directorys die in PATH stehen (kann editiert werden)
+ $UID = User ID für Zugriffsrechte, $USER = Erstellt einen USER, der eine uid haben kann.
+
+-cd $home geht zum Home verzeichnis, cd ~ macht das selbe
+
+-Tab Rechts ergänzt das Wort
+
+-Pfeil Oben/Unten scrollt durch die zuletzt genutzten Befehle
+
+-history printet den die bash history / cmd anzeige aus
+
+-.bashrc ist eine Konfigurationsdatei des Terminals, hier kann man Skripte einbinden sowie Abkürzungen für Befehle
+
+-$PATH ändern:
+	export PATH="./:$PATH" //     ./ = aktueller Pfad
+	source ~/.bashrc //permanent

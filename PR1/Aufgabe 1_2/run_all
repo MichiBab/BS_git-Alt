@@ -1,0 +1,51 @@
+#!/bin/bash
+# The third shell script
+# <Your name>
+# <Date>
+
+page_size_list="8 16 32 64"
+seed_vallue_list="2806 225 353"
+page_rep_algo_list="FIFO CLOCK AGING"
+search_algo_list="quicksort bubblesort"
+
+
+rm -r results
+mkdir results
+
+
+for i in $page_size_list; do
+    #PogrammErstellung
+    echo i= $i
+    gcc -D STOP_BEFORE_END=1 -D VMEM_PAGESIZE=$i mockup.c -o p1
+    gcc -D VMEM_PAGESIZE=$i mockup.c -o p2
+    
+    for j in $page_rep_algo_list; do
+        echo p1 mit page_rep_algo_list wert: $j
+        ./p1 -$j &
+        p1id=$!
+        sleep 1s
+        
+        for k in $seed_vallue_list; do
+            echo p2 mit seed_vallue_list wert: $k
+            
+            for y in $search_algo_list; do
+            echo p2 mit search_algo_list wert: $y
+            ./p2 -seed=$k -$y > ./results/output_$k\_$y\_$j\_$i.txt
+            #kill -s KILL $p1id > /dev/null
+            done
+            
+        done
+        
+        kill -s KILL $p1id > /dev/null
+    
+    done
+    
+done
+        
+        
+        
+        
+        
+        
+        
+    

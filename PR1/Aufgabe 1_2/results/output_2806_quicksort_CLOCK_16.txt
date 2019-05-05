@@ -1,0 +1,2 @@
+./p2 -seed=2806 -quicksort 
+VMEM_PAGESIZE=16

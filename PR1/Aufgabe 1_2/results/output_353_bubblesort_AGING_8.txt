@@ -1,0 +1,2 @@
+./p2 -seed=353 -bubblesort 
+VMEM_PAGESIZE=8
