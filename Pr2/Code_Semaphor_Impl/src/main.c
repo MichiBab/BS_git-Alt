@@ -23,7 +23,7 @@ static int wait_till_finished();
  
 int main(int argc, char **argv)
 {
-	init_all();
+    init_all();
     wait_till_finished();
     printf("\nmain ist fertig\n");
 	return 0;
@@ -45,9 +45,6 @@ static int init_all(){
     }
 
 static int wait_till_finished(){
-    pthread_join(consumer, 0);
-    pthread_join(produce1, 0);
-    pthread_join(produce2, 0);
     pthread_join(controller, 0);
     return 0;
     }
