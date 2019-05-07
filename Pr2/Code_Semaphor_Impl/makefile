@@ -2,11 +2,11 @@ TARGET   = Produce_Consume_Semaphore
 
 CC       = gcc
 # compiling flags here
-CFLAGS   = 
+CFLAGS   = -lrt -pthread -MD -MMD
 
-LINKER   = gcc -o
+LINKER   = gcc -o 
 # linking flags here
-LFLAGS   = -Wall -I. -lm -lpthread -pthread
+LFLAGS   = -lrt -g -Wall -I. -lm -pthread #-m fuer autodependencys
 
 # change these to set the proper directories where each files shoould be
 SRCDIR   = src
@@ -19,7 +19,11 @@ INCLUDES := $(wildcard $(SRCDIR)/*.h)
 OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 rm       = rm -f
 
+INCLUDES := obj/:.o=.d
+
 all: dirs $(TESTDIR)/$(TARGET)
+
+-include $(OBJECTS:.o=.d)
 
 dirs: 
 	mkdir -p $(TESTDIR)
@@ -27,11 +31,11 @@ dirs:
 	mkdir -p $(INSTALLDIR)
 
 $(TESTDIR)/$(TARGET): $(OBJECTS)
-	@$(LINKER) $@ $(LFLAGS) $(OBJECTS)
+	@$(LINKER) $@ $(LFLAGS) $(OBJECTS) -lrt
 	@echo "Linking complete!"
 
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@ -lrt
 	@echo "Compiled "$<" successfully!"
 
 install: 
