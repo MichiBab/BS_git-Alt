@@ -6,5 +6,5 @@ int produce(char c);
 int consume();
 int initFifo();
 int mutexDestroyFifo();
-
+int setConditionVarMode();
 #endif

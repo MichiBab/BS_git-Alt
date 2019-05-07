@@ -1,15 +1,10 @@
 #ifndef produce_h
 #define produce_h
+#include <pthread.h>
 
-void *producer1_init(void *not_used);
+void *producer_init(void* arg);
 
-void *producer2_init(void *not_used);
+void init_Producer(pthread_mutex_t *mutex);
 
-int lockP1();
-int lockP2();
-int unlockP2();
-int unlockP1();
-void init_Producer1();
-void init_Producer2();
-int mutexDestroyProduce();
+
 #endif

@@ -1,8 +1,6 @@
 #ifndef consume_h
 #define consume_h
-void init_consumer();
+#include <pthread.h>
+void init_consumer(pthread_mutex_t *mutex);
 void *consumer_init(void *not_used);
-int lockConsumer();
-int unlockConsumer();
-int mutexDestroyConsumer();
 #endif
