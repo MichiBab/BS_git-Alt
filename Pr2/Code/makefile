@@ -19,6 +19,7 @@ INCLUDES := $(wildcard $(SRCDIR)/*.h)
 OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 rm       = rm -f
 
+
 INCLUDES := $(OBJDIR)/:.o=.d
 
 all: dirs $(TESTDIR)/$(TARGET)
@@ -26,7 +27,7 @@ all: dirs $(TESTDIR)/$(TARGET)
 
 -include $(OBJECTS:.o=.d)
 
-dirs: 
+dirs: deps
 	@if [ "`cat /proc/sys/fs/mqueue/msg_max`" -lt 50 ]; then sudo sh -c "echo 200 > /proc/sys/fs/mqueue/msg_max"; fi
 	mkdir -p $(TESTDIR)
 	mkdir -p $(OBJDIR)
@@ -37,8 +38,8 @@ $(TESTDIR)/$(TARGET): $(OBJECTS)
 	@echo "Linking complete!"
 
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
-	@$(CC) $(CFLAGS) -c $< -o $@ -lrt
-	@echo "Compiled "$<" successfully!"
+	$(CC) $(CFLAGS) -c $< -o $@ -lrt
+	echo "Compiled "$<" successfully!"
 
 install: 
 	cp $(TESTDIR)/* $(INSTALLDIR)/
