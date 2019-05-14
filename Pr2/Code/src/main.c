@@ -128,6 +128,15 @@ int terminate(){
     pthread_join(*prod2Arg.thread, 0);
     pthread_join(*prodGenArg.thread, 0);
     pthread_join(*consGenArg.thread, 0);
+
+	for(int i = 0; i < WORKER_THREADS_NUM; i++){
+        pthread_join(conWorker[i],0);
+    }
+    
+    for(int i = 0; i < WORKER_THREADS_NUM; i++){
+        pthread_join(prodWorker[i],0);
+    }
+
     //Hiernach sind die threads gecanceled, => die mutex können destroyed werden
     printf("init destroy:\n");
     for(int i = 0; i < THREADS_NUM; i++){
