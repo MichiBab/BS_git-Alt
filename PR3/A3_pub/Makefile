@@ -1,7 +1,7 @@
 # Makefile for appl and mmanage
 .PHONY: clean 
 
-CC	 = /usr/bin/gcc
+CC	 = /usr/bin/clang
 CFLAGS	 = -pthread -ggdb -Wall -std=gnu99 $(DFLAGS)
 ifdef VMEM_PAGESIZE
 # Supported page sizes 8 16 32 64

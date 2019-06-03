@@ -1,0 +1,17 @@
+INDEX VERSION 1.131+/home/michi/Dokumente/eclipse_java_workspace/.metadata/.plugins/org.eclipse.jdt.core
+4159955027.index
+4124372715.index
+2843547892.index
+2464490224.index
+1133680952.index
+3429456070.index
+3534265713.index
+771371966.index
+532125320.index
+646308851.index
+947536339.index
+954033453.index
+785089901.index
+3864003656.index
+2987533244.index
+1570842206.index

@@ -230,6 +230,7 @@ struct age age[VMEM_NFRAMES];
 static struct vmem_struct *vmem = NULL; //!< Reference to shared memory
 
 int main(int argc, char **argv) {
+	printf("HI");
     struct sigaction sigact;
     init_pagefile(); // init page file
     open_logger();   // open logfile
@@ -374,13 +375,13 @@ void cleanup(void) {
 }
 
 void vmem_init(void) {
-
+	printf("HI");
     /* Create System V shared memory */
-
+	key_t key = ftok(&SHMKEY,SHMPROCID);
     /* We are creating the shm, so set the IPC_CREAT flag */
-
+	int err = shmget(key,VMEM_VIRTMEMSIZE,IPC_CREAT);
     /* Attach shared memory to vmem (virtual memory) */
-
+	printf("%d",err);
     /* Fill with zeros */
     memset(vmem, 0, SHMSIZE);
 }
@@ -391,12 +392,12 @@ int find_unused_frame() {
 void allocate_page(const int req_page, const int g_count) {
 
     /* Log action */
-//    le.req_pageno = req_page;
-//    le.replaced_page = removedPage;
-//    le.alloc_frame = frame;
-//    le.g_count = g_count; 
-//    le.pf_count = pf_count;
-//    logger(le);
+    //le.req_pageno = req_page;
+    //le.replaced_page = removedPage;
+    //le.alloc_frame = frame;
+   // le.g_count = g_count; 
+    //le.pf_count = pf_count;
+    //logger(le);
 }
 
 void fetchPage(int page, int frame){
