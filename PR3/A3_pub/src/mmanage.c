@@ -377,13 +377,18 @@ void cleanup(void) {
 void vmem_init(void) {
 	printf("HI");
     /* Create System V shared memory */
-	key_t key = ftok(&SHMKEY,SHMPROCID);
+	key_t key = ftok(SHMKEY,SHMPROCID);
+	/* Allocate Memory*/
+	vmem = malloc(SHMSIZE);
+	memset(vmem, 22, 22);
     /* We are creating the shm, so set the IPC_CREAT flag */
-	int err = shmget(key,VMEM_VIRTMEMSIZE,IPC_CREAT);
+	long err = shmget(key,VMEM_VIRTMEMSIZE,IPC_CREAT);
     /* Attach shared memory to vmem (virtual memory) */
 	printf("%d",err);
     /* Fill with zeros */
-    memset(vmem, 0, SHMSIZE);
+	memset(vmem, 0, SHMSIZE);
+
+    printf("JHASDIHSDA");
 }
 
 int find_unused_frame() {
