@@ -27,7 +27,7 @@ all: dirs $(TESTDIR)/$(TARGET)
 
 -include $(OBJECTS:.o=.d)
 
-dirs: deps
+dirs: 
 	@if [ "`cat /proc/sys/fs/mqueue/msg_max`" -lt 50 ]; then sudo sh -c "echo 200 > /proc/sys/fs/mqueue/msg_max"; fi
 	mkdir -p $(TESTDIR)
 	mkdir -p $(OBJDIR)
